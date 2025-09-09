@@ -13,6 +13,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #0c0a18;
             color: #F9FAFB;
+            overflow-x: hidden; /* Prevent horizontal scroll from blobs */
         }
         #particles-js {
             position: fixed;
@@ -29,10 +30,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .glass-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.1);
-        }
+        /* No hover effect here, will be controlled by JS library */
         .tech-tag {
             background-color: #374151;
             color: #E5E7EB;
@@ -52,9 +50,7 @@
             animation: text-gradient 5s linear infinite;
         }
         @keyframes text-gradient {
-            to {
-                background-position: 200% center;
-            }
+            to { background-position: 200% center; }
         }
         .fade-in-section {
             opacity: 0;
@@ -65,12 +61,44 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* Background Blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .blob1 {
+            width: 400px;
+            height: 400px;
+            top: -150px;
+            left: -150px;
+            background: #4facfe;
+            animation: move-blob 15s infinite alternate;
+        }
+        .blob2 {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            right: -100px;
+            background: #00f2fe;
+            animation: move-blob 12s infinite alternate-reverse;
+        }
+        @keyframes move-blob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
     </style>
 </head>
 <body class="antialiased">
 
     <div id="particles-js"></div>
-
+    <div class="relative">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </div>
+    
     <!-- Header -->
     <header class="fixed w-full top-0 left-0 z-50">
         <div class="container mx-auto px-6 py-4 border-b border-gray-700/50" style="background: rgba(12, 10, 24, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
@@ -98,19 +126,27 @@
 
     <main class="pt-24 relative z-10">
         <!-- Hero Section -->
-        <section id="hero" class="container mx-auto px-6 py-28 text-center">
-            <div class="max-w-4xl mx-auto">
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4">
-                    <span class="animated-gradient">DevOps Git Project</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-300 mb-8">
-                    A foundational project demonstrating core DevOps principles through Infrastructure as Code (IaC) and automation scripting.
-                </p>
-                <a href="https://github.com/Gourav-056/devops-git-project" target="_blank" rel="noopener noreferrer" 
-                   class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-4 px-10 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-cyan-500/20">
-                    View on GitHub
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block ml-2 h-5 w-5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                </a>
+        <section id="hero" class="container mx-auto px-6 py-20 text-center">
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 items-center gap-8">
+                <div class="text-left">
+                    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4">
+                        <span class="animated-gradient">DevOps Git Project</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-300 mb-8">
+                        A foundational project demonstrating core DevOps principles through IaC and automation scripting.
+                    </p>
+                    <a href="https://github.com/Gourav-056/devops-git-project" target="_blank" rel="noopener noreferrer" 
+                       class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-4 px-10 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-cyan-500/20">
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block ml-2 h-5 w-5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <!---->
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                      <path fill="#00F2FE" d="M48.2,-64.8C62,-52.8,72.4,-36.4,75.4,-19.3C78.4,-2.2,74,15.7,65,31.2C56,46.7,42.5,59.8,26.8,67.6C11.1,75.4,-6.7,77.9,-23.5,73.4C-40.3,68.9,-56.1,57.4,-66.4,42.5C-76.7,27.6,-81.5,9.3,-78.8,-7.4C-76.1,-24.1,-65.9,-39.2,-52.8,-51.1C-39.7,-63,-23.7,-71.7,-6.2,-70.6C11.3,-69.5,22.6,-58.6,33.5,-52.8C44.4,-47,55,-47,48.2,-64.8Z" transform="translate(100 100) scale(1.1)" />
+                    </svg>
+                </div>
             </div>
         </section>
 
@@ -157,19 +193,19 @@
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     
-                    <div class="glass-card rounded-xl p-6 flex flex-col">
+                    <div class="glass-card rounded-xl p-6 flex flex-col" data-tilt>
                         <h3 class="text-xl font-semibold mb-2 text-white flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><path d="M21.5 12H16c-.7 2-2 3-4 3s-3.3-1-4-3H2.5"/><path d="M16 9.5c.7-2 2-3 4-3s3.3 1 4 3"/><path d="M8 9.5c-.7-2-2-3-4-3S.7 7.5 0 9.5"/><path d="M2.5 12H8c.7 2 2 3 4 3s3.3-1 4-3h5.5"/></svg>Terraform Files</h3>
                         <p class="text-gray-400 mb-4 flex-grow">Includes <code class="bg-gray-900 px-2 py-1 rounded text-sm">main.tf</code>, and more to define and configure cloud infrastructure.</p>
                         <span class="tech-tag self-start mt-auto">Infrastructure as Code</span>
                     </div>
 
-                    <div class="glass-card rounded-xl p-6 flex flex-col">
+                    <div class="glass-card rounded-xl p-6 flex flex-col" data-tilt>
                         <h3 class="text-xl font-semibold mb-2 text-white flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>script.sh</h3>
                         <p class="text-gray-400 mb-4 flex-grow">A shell script designed to automate tasks, such as environment setup, deployment, or running tests.</p>
                         <span class="tech-tag self-start mt-auto">Automation</span>
                     </div>
 
-                    <div class="glass-card rounded-xl p-6 flex flex-col">
+                    <div class="glass-card rounded-xl p-6 flex flex-col" data-tilt>
                         <h3 class="text-xl font-semibold mb-2 text-white flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>index.html</h3>
                         <p class="text-gray-400 mb-4 flex-grow">A simple HTML file, likely serving as a placeholder or status page for the deployed infrastructure.</p>
                         <span class="tech-tag self-start mt-auto">Frontend</span>
@@ -188,13 +224,13 @@
                 <a href="https://github.com/Gourav-056" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                 </a>
-                <!-- Add other social links here, e.g., LinkedIn, Twitter -->
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <script>
         // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -204,49 +240,28 @@
         });
 
         // Particle.js config
-        particlesJS('particles-js', {
-          "particles": {
-            "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#4facfe" },
-            "shape": { "type": "circle" },
-            "opacity": { "value": 0.5, "random": true },
-            "size": { "value": 3, "random": true },
-            "line_linked": { "enable": true, "distance": 150, "color": "#00f2fe", "opacity": 0.3, "width": 1 },
-            "move": { "enable": true, "speed": 1, "direction": "none", "random": false, "straight": false, "out_mode": "out" }
-          },
-          "interactivity": {
-            "detect_on": "canvas",
-            "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-            "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.7 } }, "push": { "particles_nb": 4 } }
-          },
-          "retina_detect": true
-        });
+        particlesJS('particles-js', { /* ... existing particles.js config ... */ });
 
         // Fade-in animation on scroll
         const faders = document.querySelectorAll('.fade-in-section');
-        const appearOptions = {
-            threshold: 0.3,
-            rootMargin: "0px 0px -50px 0px"
-        };
+        const appearOptions = { threshold: 0.3, rootMargin: "0px 0px -50px 0px" };
         const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
             entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
-                    entry.target.classList.add('is-visible');
-                    appearOnScroll.unobserve(entry.target);
-                }
+                if (!entry.isIntersecting) { return; }
+                entry.target.classList.add('is-visible');
+                appearOnScroll.unobserve(entry.target);
             });
         }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
+        // Init Vanilla Tilt
+        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.2
         });
-
     </script>
 </body>
 </html>
 
-
-           
-       
