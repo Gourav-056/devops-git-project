@@ -7,57 +7,107 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-            color: #F9FAFB; /* text-gray-50 */
+            background-color: #0c0a18;
+            color: #F9FAFB;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
         .glass-card {
-            background: rgba(31, 41, 55, 0.5); /* bg-gray-800 with opacity */
-            backdrop-filter: blur(10px);
+            background: rgba(31, 41, 55, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.1);
         }
         .tech-tag {
-            background-color: #374151; /* bg-gray-700 */
-            color: #E5E7EB; /* text-gray-200 */
-            padding: 0.25rem 0.75rem;
+            background-color: #374151;
+            color: #E5E7EB;
+            padding: 0.35rem 0.85rem;
             border-radius: 9999px;
             font-size: 0.875rem;
             font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .animated-gradient {
+            background: linear-gradient(90deg, #00f2fe, #4facfe, #00f2fe);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-gradient 5s linear infinite;
+        }
+        @keyframes text-gradient {
+            to {
+                background-position: 200% center;
+            }
+        }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body class="antialiased">
 
+    <div id="particles-js"></div>
+
     <!-- Header -->
-    <header class="fixed w-full top-0 left-0 z-50 glass-card shadow-lg">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-white">
-                <a href="#">Gourav's Portfolio</a>
-            </div>
-            <ul class="flex items-center space-x-8">
-                <li><a href="#about" class="hover:text-cyan-400 transition-colors duration-300">About</a></li>
-                <li><a href="#tech" class="hover:text-cyan-400 transition-colors duration-300">Technologies</a></li>
-                <li><a href="#files" class="hover:text-cyan-400 transition-colors duration-300">Repo Files</a></li>
-            </ul>
-        </nav>
+    <header class="fixed w-full top-0 left-0 z-50">
+        <div class="container mx-auto px-6 py-4 border-b border-gray-700/50" style="background: rgba(12, 10, 24, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+            <nav class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-white">Gourav's Portfolio</a>
+                <ul class="hidden md:flex items-center space-x-8">
+                    <li><a href="#about" class="hover:text-cyan-400 transition-colors duration-300">About</a></li>
+                    <li><a href="#tech" class="hover:text-cyan-400 transition-colors duration-300">Technologies</a></li>
+                    <li><a href="#files" class="hover:text-cyan-400 transition-colors duration-300">Repo Files</a></li>
+                </ul>
+                <button id="mobile-menu-button" class="md:hidden text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden" style="background: rgba(12, 10, 24, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+            <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-700">About</a>
+            <a href="#tech" class="block py-2 px-4 text-sm hover:bg-gray-700">Technologies</a>
+            <a href="#files" class="block py-2 px-4 text-sm hover:bg-gray-700">Repo Files</a>
+        </div>
     </header>
 
-    <main class="pt-24">
-
+    <main class="pt-24 relative z-10">
         <!-- Hero Section -->
-        <section id="hero" class="container mx-auto px-6 py-20 text-center">
-            <div class="max-w-3xl mx-auto">
-                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4">
-                    DevOps Git Project
+        <section id="hero" class="container mx-auto px-6 py-28 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4">
+                    <span class="animated-gradient">DevOps Git Project</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-300 mb-8">
                     A foundational project demonstrating core DevOps principles through Infrastructure as Code (IaC) and automation scripting.
                 </p>
                 <a href="https://github.com/Gourav-056/devops-git-project" target="_blank" rel="noopener noreferrer" 
-                   class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-8 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105">
+                   class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-4 px-10 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-cyan-500/20">
                     View on GitHub
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block ml-2 h-5 w-5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                 </a>
@@ -65,13 +115,13 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 bg-gray-800/30">
+        <section id="about" class="py-20 fade-in-section">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold">About The Project</h2>
-                    <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4"></div>
+                    <h2 class="text-4xl font-bold">About The Project</h2>
+                    <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4 rounded-full"></div>
                 </div>
-                <div class="max-w-4xl mx-auto text-center text-gray-300 leading-relaxed">
+                <div class="max-w-4xl mx-auto text-center text-gray-300 leading-relaxed glass-card p-8 rounded-xl">
                     <p>
                         This repository serves as a practical introduction to the world of DevOps. It integrates key technologies to illustrate a complete workflow: using <strong class="text-white">Git</strong> for version control, automating tasks with <strong class="text-white">Shell Scripting</strong>, and managing infrastructure declaratively with <strong class="text-white">Terraform</strong>. The project structure is a blueprint for building scalable and maintainable automated systems.
                     </p>
@@ -80,13 +130,13 @@
         </section>
 
         <!-- Technologies Section -->
-        <section id="tech" class="py-20">
+        <section id="tech" class="py-20 fade-in-section">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold">Technologies & Tools</h2>
-                    <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4"></div>
+                    <h2 class="text-4xl font-bold">Technologies & Tools</h2>
+                    <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4 rounded-full"></div>
                 </div>
-                <div class="flex flex-wrap justify-center items-center gap-4 max-w-2xl mx-auto">
+                <div class="flex flex-wrap justify-center items-center gap-4 max-w-3xl mx-auto">
                     <span class="tech-tag">Git</span>
                     <span class="tech-tag">GitHub</span>
                     <span class="tech-tag">Shell Scripting</span>
@@ -99,33 +149,30 @@
         </section>
 
         <!-- Repo Files Section -->
-        <section id="files" class="py-20 bg-gray-800/30">
+        <section id="files" class="py-20 fade-in-section">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold">Key Repository Files</h2>
-                    <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4"></div>
+                    <h2 class="text-4xl font-bold">Key Repository Files</h2>
+                    <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4 rounded-full"></div>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     
-                    <!-- Terraform Card -->
-                    <div class="glass-card rounded-lg p-6 flex flex-col">
-                        <h3 class="text-xl font-semibold mb-2 text-white">Terraform Files</h3>
-                        <p class="text-gray-400 mb-4 flex-grow">Includes <code class="bg-gray-900 px-2 py-1 rounded text-sm">main.tf</code>, <code class="bg-gray-900 px-2 py-1 rounded text-sm">provider.tf</code>, and <code class="bg-gray-900 px-2 py-1 rounded text-sm">variable.tf</code> to define and configure cloud infrastructure resources.</p>
-                        <span class="tech-tag self-start">Infrastructure as Code</span>
+                    <div class="glass-card rounded-xl p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2 text-white flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><path d="M21.5 12H16c-.7 2-2 3-4 3s-3.3-1-4-3H2.5"/><path d="M16 9.5c.7-2 2-3 4-3s3.3 1 4 3"/><path d="M8 9.5c-.7-2-2-3-4-3S.7 7.5 0 9.5"/><path d="M2.5 12H8c.7 2 2 3 4 3s3.3-1 4-3h5.5"/></svg>Terraform Files</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">Includes <code class="bg-gray-900 px-2 py-1 rounded text-sm">main.tf</code>, and more to define and configure cloud infrastructure.</p>
+                        <span class="tech-tag self-start mt-auto">Infrastructure as Code</span>
                     </div>
 
-                    <!-- Shell Script Card -->
-                    <div class="glass-card rounded-lg p-6 flex flex-col">
-                        <h3 class="text-xl font-semibold mb-2 text-white">script.sh</h3>
+                    <div class="glass-card rounded-xl p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2 text-white flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>script.sh</h3>
                         <p class="text-gray-400 mb-4 flex-grow">A shell script designed to automate tasks, such as environment setup, deployment, or running tests.</p>
-                        <span class="tech-tag self-start">Automation</span>
+                        <span class="tech-tag self-start mt-auto">Automation</span>
                     </div>
 
-                    <!-- HTML Card -->
-                    <div class="glass-card rounded-lg p-6 flex flex-col">
-                        <h3 class="text-xl font-semibold mb-2 text-white">index.html</h3>
+                    <div class="glass-card rounded-xl p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2 text-white flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-400"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>index.html</h3>
                         <p class="text-gray-400 mb-4 flex-grow">A simple HTML file, likely serving as a placeholder or status page for the deployed infrastructure.</p>
-                        <span class="tech-tag self-start">Frontend</span>
+                        <span class="tech-tag self-start mt-auto">Frontend</span>
                     </div>
 
                 </div>
@@ -134,16 +181,72 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-700 mt-20">
-        <div class="container mx-auto px-6 py-6 text-center text-gray-400">
+    <footer class="border-t border-gray-800 mt-20 fade-in-section relative z-10">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
             <p>&copy; 2025 Gourav. All rights reserved.</p>
-            <p class="mt-2">
+            <div class="flex justify-center gap-6 mt-4">
                 <a href="https://github.com/Gourav-056" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors duration-300">
-                    Find me on GitHub
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                 </a>
-            </p>
+                <!-- Add other social links here, e.g., LinkedIn, Twitter -->
+            </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Particle.js config
+        particlesJS('particles-js', {
+          "particles": {
+            "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#4facfe" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.5, "random": true },
+            "size": { "value": 3, "random": true },
+            "line_linked": { "enable": true, "distance": 150, "color": "#00f2fe", "opacity": 0.3, "width": 1 },
+            "move": { "enable": true, "speed": 1, "direction": "none", "random": false, "straight": false, "out_mode": "out" }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+            "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.7 } }, "push": { "particles_nb": 4 } }
+          },
+          "retina_detect": true
+        });
+
+        // Fade-in animation on scroll
+        const faders = document.querySelectorAll('.fade-in-section');
+        const appearOptions = {
+            threshold: 0.3,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+    </script>
 </body>
 </html>
+
+
+           
+       
