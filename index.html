@@ -1,9 +1,149 @@
-<<<<<<< HEAD
-<html><body>hello</body></html>
-=======
 <!DOCTYPE html>
-<html>
-  <head><title> My New Website </title></head>
-  <body><h1>   Hello Devops!   </h1></body>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourav's DevOps Git Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #F9FAFB; /* text-gray-50 */
+        }
+        .glass-card {
+            background: rgba(31, 41, 55, 0.5); /* bg-gray-800 with opacity */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .tech-tag {
+            background-color: #374151; /* bg-gray-700 */
+            color: #E5E7EB; /* text-gray-200 */
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 left-0 z-50 glass-card shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-white">
+                <a href="#">Gourav's Portfolio</a>
+            </div>
+            <ul class="flex items-center space-x-8">
+                <li><a href="#about" class="hover:text-cyan-400 transition-colors duration-300">About</a></li>
+                <li><a href="#tech" class="hover:text-cyan-400 transition-colors duration-300">Technologies</a></li>
+                <li><a href="#files" class="hover:text-cyan-400 transition-colors duration-300">Repo Files</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="pt-24">
+
+        <!-- Hero Section -->
+        <section id="hero" class="container mx-auto px-6 py-20 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4">
+                    DevOps Git Project
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-8">
+                    A foundational project demonstrating core DevOps principles through Infrastructure as Code (IaC) and automation scripting.
+                </p>
+                <a href="https://github.com/Gourav-056/devops-git-project" target="_blank" rel="noopener noreferrer" 
+                   class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-8 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105">
+                    View on GitHub
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block ml-2 h-5 w-5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-gray-800/30">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">About The Project</h2>
+                    <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4"></div>
+                </div>
+                <div class="max-w-4xl mx-auto text-center text-gray-300 leading-relaxed">
+                    <p>
+                        This repository serves as a practical introduction to the world of DevOps. It integrates key technologies to illustrate a complete workflow: using <strong class="text-white">Git</strong> for version control, automating tasks with <strong class="text-white">Shell Scripting</strong>, and managing infrastructure declaratively with <strong class="text-white">Terraform</strong>. The project structure is a blueprint for building scalable and maintainable automated systems.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technologies Section -->
+        <section id="tech" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Technologies & Tools</h2>
+                    <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4"></div>
+                </div>
+                <div class="flex flex-wrap justify-center items-center gap-4 max-w-2xl mx-auto">
+                    <span class="tech-tag">Git</span>
+                    <span class="tech-tag">GitHub</span>
+                    <span class="tech-tag">Shell Scripting</span>
+                    <span class="tech-tag">Terraform</span>
+                    <span class="tech-tag">Infrastructure as Code (IaC)</span>
+                    <span class="tech-tag">CI/CD Principles</span>
+                    <span class="tech-tag">Automation</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repo Files Section -->
+        <section id="files" class="py-20 bg-gray-800/30">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Key Repository Files</h2>
+                    <div class="w-24 h-1 bg-cyan-500 mx-auto mt-4"></div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    
+                    <!-- Terraform Card -->
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2 text-white">Terraform Files</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">Includes <code class="bg-gray-900 px-2 py-1 rounded text-sm">main.tf</code>, <code class="bg-gray-900 px-2 py-1 rounded text-sm">provider.tf</code>, and <code class="bg-gray-900 px-2 py-1 rounded text-sm">variable.tf</code> to define and configure cloud infrastructure resources.</p>
+                        <span class="tech-tag self-start">Infrastructure as Code</span>
+                    </div>
+
+                    <!-- Shell Script Card -->
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2 text-white">script.sh</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">A shell script designed to automate tasks, such as environment setup, deployment, or running tests.</p>
+                        <span class="tech-tag self-start">Automation</span>
+                    </div>
+
+                    <!-- HTML Card -->
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold mb-2 text-white">index.html</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">A simple HTML file, likely serving as a placeholder or status page for the deployed infrastructure.</p>
+                        <span class="tech-tag self-start">Frontend</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-700 mt-20">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-400">
+            <p>&copy; 2024 Gourav. All rights reserved.</p>
+            <p class="mt-2">
+                <a href="https://github.com/Gourav-056" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors duration-300">
+                    Find me on GitHub
+                </a>
+            </p>
+        </div>
+    </footer>
+
+</body>
 </html>
->>>>>>> 1e39d8b4cafa683d9cbf55ad65674f75caab07c2
